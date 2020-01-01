@@ -7,6 +7,11 @@
     <title>Login</title>
 </head>
 <body>
+    @if (session('error'))
+        <div class="alert alert-success">
+            {{ session('error') }}
+        </div>
+    @endif
     <form method="POST" action='/login'>
         @csrf
         E-mail:<br>
@@ -15,7 +20,8 @@
         Password:<br>
         <input type="password" name="password" placeholder="password">
         <br><br>
-        <input type="submit" value="Submit">
+        <input type="submit" value="Submit"><br><br>
+        <a href="{{route('show.user.reg.form')}}">Sign Up!</a>
     </form>
 </body>
 </html>
