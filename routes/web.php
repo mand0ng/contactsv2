@@ -15,10 +15,15 @@ Route::get('/', function () {
     return view('welcome');
 })->middleware('auth');
 
-// route to show the login form
-Route::get('login', array('uses' => 'HomeController@showLogin'))->name('show.login');
 
-// route to process the form
-Route::post('login', array('uses' => 'HomeController@doLogin'))->name('login');
+Route::get('login', array('uses' => 'LoginController@showLogin'))->name('show.login');
+Route::post('login', array('uses' => 'LoginController@doLogin'))->name('login');
+Route::get('logout', array('uses' => 'LoginController@doLogout'))->name('logout');
 
-Route::get('logout', array('uses' => 'HomeController@doLogout'))->name('logout');
+
+Route::get('/sign-up', array('uses' => 'UserController@showForm'))->name('show.user.reg.form');
+Route::post('/register-user', array('uses' => 'UserController@create'))->name('register.user');
+Route::get('/check-email', array('uses' => 'UserController@checkEmail'));
+
+Route::get('/home', array('uses' => 'UserController@index'))->name('user.home');
+
