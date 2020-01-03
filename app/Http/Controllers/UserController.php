@@ -5,11 +5,14 @@ namespace App\Http\Controllers;
 use App\User;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
     public function index(){
-        return view('user.home');
+        
+        // dd(Auth::user()->contacts);
+        return view('user.home')->with(['contacts' => Auth::user()->contacts]);
     }
 
     public function showForm(){

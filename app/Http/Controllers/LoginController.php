@@ -24,12 +24,13 @@ class LoginController extends Controller
         //$request->session()->flush();
         
         
-        return redirect()->intended('/');
+        return redirect()->intended('/login');
        
     }
     public function showLogin()
     {
-        // show the form
+        if(Auth::check())
+            return redirect()->route('user.home');
         return view('login');
     }
 }

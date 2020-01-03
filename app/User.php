@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Contact;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -42,4 +43,12 @@ class User extends Authenticatable
         $array['password'] = Hash::make($array['password']);
         return $array;
     }
+
+    public function Contacts(){
+        return $this->belongsToMany(Contact::class);
+    }
+
+   public function containsContact($id){
+       return $this->Contacts()->where('contacts.id', $id)->exists();
+   }
 }
