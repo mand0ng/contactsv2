@@ -1,27 +1,44 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Login</title>
-</head>
-<body>
+@extends('layout.base')
+@push('styles')
+    <link href="{{ asset('css/login.css') }}" rel="stylesheet">
+@endpush
+
+@push('scripts')
+    <!-- <script type="text/javascript" src="{{ asset('js/scripts.js') }}"></script> -->
+@endpush
+
+@section('title', 'Login')
+
+@section('content')
     @if (session('error'))
         <div class="alert alert-success">
             {{ session('error') }}
         </div>
     @endif
-    <form method="POST" action='/login'>
-        @csrf
-        E-mail:<br>
-        <input type="text" name="email" placeholder="EMAIL">
-        <br>
-        Password:<br>
-        <input type="password" name="password" placeholder="password">
-        <br><br>
-        <input type="submit" value="Submit"><br><br>
-        <a href="{{route('show.user.reg.form')}}">Sign Up!</a>
-    </form>
-</body>
-</html>
+   
+
+    <div class="wrapper fadeInDown">
+        <div id="formContent">
+            <!-- Tabs Titles -->
+
+            <form method="POST" action='/login'>
+                @csrf
+                
+                <input id="email" class="fadeIn second" type="text" name="email" placeholder="Email">
+                
+                
+                <input id="password" class="fadeIn third" type="password" name="password" placeholder="Password">
+                
+                <input type="submit" value="Submit">
+               
+            </form>
+
+            <!-- Remind Passowrd -->
+            <div id="formFooter">
+            <a href="{{route('show.user.reg.form')}}">Sign Up!</a>
+            </div>
+
+        </div>
+    </div>
+
+@endsection
